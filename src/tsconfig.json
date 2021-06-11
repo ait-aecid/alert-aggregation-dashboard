@@ -1,0 +1,17 @@
+{
+  // "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "outDir": "./target",
+    "skipLibCheck": true,
+    "lib": ["es6", "dom", "es2017"]
+  },
+  "include": [
+    "index.ts",
+    "common/**/*.ts",
+    "public/**/*.ts",
+    "public/**/*.tsx",
+    "server/**/*.ts",
+    "../../typings/**/*"
+  ]
+}

@@ -1,0 +1,9 @@
+---
+- name: Install AMiner CTI Dashboard
+  hosts: all
+  become: yes
+  become_method: sudo
+  become_user: root
+  roles:
+    - aminer-cti
+

@@ -1,0 +1,7 @@
+{
+  "prefix": "aminer",
+  "paths": {
+    "aminer": "."
+  },
+  "translations": ["translations/ja-JP.json"]
+}

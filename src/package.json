@@ -1,0 +1,12 @@
+{
+  "name": "aminer",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "yarn plugin-helpers build",
+    "plugin-helpers": "node ../../scripts/plugin_helpers",
+    "kbn": "node ../../scripts/kbn",
+    "start": "react-scripts --max_old_space_size=4096 start",
+    "predeploy": "react-scripts --max_old_space_size=4096 build"
+  }
+}
