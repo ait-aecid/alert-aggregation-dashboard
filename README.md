@@ -19,7 +19,7 @@ You can specify the dashboard version (wrt. to Kibana version) in `roles > amine
 
 To install the AMiner CTI Kibana plugin, choose the appropriate version and run:
 
-> sudo /usr/share/kibana/bin/kibana-plugin install file:///path/to/soc-7.x.x.zip --allow-root
+> sudo /usr/share/kibana/bin/kibana-plugin install file:///path/to/aminer-7.x.x.zip --allow-root
 
 The zip files can be found under `roles > aminer-cti > plugins`
 
