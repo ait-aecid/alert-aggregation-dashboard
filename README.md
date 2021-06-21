@@ -13,6 +13,8 @@ Under `hosts` you can specify in which hosts the dashboard is to be installed.
 
 You can specify the dashboard version (wrt. to Kibana version) in `roles > aminer-cti > defaults > main.yml`
 
+**Note**: It is important for the kibana version to reflect the kibana-plugin version.
+
 
 ## Manual installation
 
