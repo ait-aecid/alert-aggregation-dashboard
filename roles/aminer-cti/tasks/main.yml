@@ -1,18 +1,8 @@
-# Gather rpm package facts
-- name: Gather rpm package facts
-  package_facts:
-    manager: auto
-
 # Copy aminer CTI dashboard
 - name: Copy CTI dashboard file
   copy:
     src: '{{ dashboard_path }}'
     dest: /home/
 
-- name: Copy CTI dashboard configuration file
-  copy:
-    src: '{{ config_file_path }}'
-    dest: /etc/kibana/aminer.yml
-
 - name: Install plugin into Kibana
-  shell: 'sudo /usr/share/kibana/bin/kibana-plugin install file:///home/{{dashboard_name}} --allow-root'
+  shell: '/usr/share/kibana/bin/kibana-plugin install file:///home/{{dashboard_name}}'
