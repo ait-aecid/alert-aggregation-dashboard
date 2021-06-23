@@ -33,6 +33,8 @@ import {
     EuiFlyout,
     EuiFlyoutBody,
     EuiFlyoutHeader,
+    EuiFlyoutFooter,
+    EuiButtonEmpty,
     EuiCodeBlock,
   } from '@elastic/eui';
   
@@ -136,8 +138,8 @@ export const AminerApp = ({ basename, notifications, http, navigation }: AminerA
         link: {
             highlightColor: "#ff7f7f",
         },
-        width: 900,
-        height: 800,
+        width: 1200,
+        height: 1200,
         directed: true,
         collapsible: false,
         // focusAnimationDuration: 0.1,
@@ -316,6 +318,14 @@ export const AminerApp = ({ basename, notifications, http, navigation }: AminerA
                         let group_count = group_ids.length.toString() + " Groups";
                         nodes.push({"id": group_count, color: "#87ceeb", symbolType: 'circle', fontSize: 11, highlightFontSize: 11});
                         links.push({source: meta_alert_id, target: group_count});
+                        let alert_count = 0;
+                        group_ids.forEach((gtuple, index, arr) => {
+                            let alert_ids = gtuple[1];
+                            alert_count += alert_ids.length;
+                        });
+                        let total_alert_count = alert_count.toString() + " Alerts";
+                        nodes.push({"id": total_alert_count, color: "#a8caa3", symbolType: 'circle', fontSize: 11, highlightFontSize: 11});
+                        links.push({source: group_count, target: total_alert_count});
                     } else {
                         group_ids.forEach((gtuple, index, arr) => {
                             let group_id = gtuple[0];
@@ -372,7 +382,7 @@ export const AminerApp = ({ basename, notifications, http, navigation }: AminerA
         // initialSelected: JSON.parse(localStorage.getItem('selectedMetas'))
     };
 
-    const onFloyoutClose = () => {
+    const closeFlyout = () => {
         setIsFlyoutVisible(false)
     };
 
@@ -542,6 +552,13 @@ export const AminerApp = ({ basename, notifications, http, navigation }: AminerA
                         <EuiFlexItem grow={5}>
                             <Table 
                                 title="Meta-Alerts" 
+                                button={
+                                    <EuiFlexItem grow={false}>
+                                        <EuiButton size="s" onClick={() => setIsFlyoutVisible(!isFlyoutVisible)}>
+                                            {isFlyoutVisible ? 'Close graph' : 'Open graph'}
+                                        </EuiButton>
+                                    </EuiFlexItem>
+                                }
                                 notifications={notifications}
                                 http={http}
                                 url={url}
@@ -592,9 +609,10 @@ export const AminerApp = ({ basename, notifications, http, navigation }: AminerA
                     {(isFlyoutVisible) &&
                         <EuiFlyout
                             size="m"
-                            onClose={onFloyoutClose}
+                            onClose={closeFlyout}
                             aria-labelledby="flyoutTitle">
                             <EuiFlyoutBody>
+                                {(isGroupSelectable) && "Select Meta-Alerts"}
                                 <Graph
                                     id="metas"
                                     data={graphData}
@@ -603,6 +621,19 @@ export const AminerApp = ({ basename, notifications, http, navigation }: AminerA
                                     onClickLink={onClickLink}
                                 />
                             </EuiFlyoutBody>
+                            <EuiFlyoutFooter>
+                                <EuiFlexGroup justifyContent="spaceBetween">
+                                    <EuiFlexItem grow={false}>
+                                        <EuiButton 
+                                            size="s"
+                                            iconType="cross"
+                                            onClick={closeFlyout}
+                                            flush="left">
+                                            Close
+                                        </EuiButton >
+                                    </EuiFlexItem>
+                                </EuiFlexGroup>
+                            </EuiFlyoutFooter>
                         </EuiFlyout>
                     }
 

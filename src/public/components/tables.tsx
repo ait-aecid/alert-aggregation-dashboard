@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    EuiTitle, EuiBasicTable, EuiPanel, EuiSpacer, EuiButton, EuiTextColor
+    EuiTitle, EuiBasicTable, EuiPanel, EuiSpacer, EuiButton, EuiTextColor, EuiFlexGroup, EuiFlexItem
 } from '@elastic/eui';
 
 
@@ -101,16 +101,21 @@ class Table extends React.Component {
     render() {
         return (
             <div>
-                <EuiTitle size="s">
-                    <h4>
-                        {this.props.title}
-                        <EuiTextColor color="subdued" style={{ "fontSize": "16px", "marginLeft": "8px" }}> 
-                            { (this.state.hits.length) && this.state.hits.length + " of " + this.state.total}
-                            { (this.state.hits && this.total==10000) && "+"}
-                        </EuiTextColor>
-                    </h4>
-                </EuiTitle>
-                
+                <EuiFlexGroup justifyContent="spaceBetween">
+                    <EuiFlexItem grow={false}>
+                        <EuiTitle size="s">
+                            <h4>
+                                {this.props.title}
+                                <EuiTextColor color="subdued" style={{ "fontSize": "16px", "marginLeft": "8px" }}> 
+                                    { (this.state.hits.length) && this.state.hits.length + " of " + this.state.total}
+                                    { (this.state.hits && this.total==10000) && "+"}
+                                </EuiTextColor>
+                            </h4>
+                        </EuiTitle>
+                    </EuiFlexItem>
+                    {(this.props.button) && this.props.button}
+                </EuiFlexGroup>
+
                 <EuiSpacer size="s" />
 
                 <EuiPanel style={{ "overflowY": "scroll", height: "580px" }}>

@@ -3,14 +3,13 @@ import { Client } from '@elastic/elasticsearch';
 // import fs from 'fs';
 // import yml from 'js-yaml';
 
-
 export function defineRoutes(router: IRouter) {
 
   // let config = yml.safeLoad(fs.readFileSync('/etc/kibana/kibana.yml', 'utf8'));
   // let elasticHost = config.elasticsearch.hosts;
 
   // const client = new Client({
-  //     node: "elasticHost",
+  //     node: "http://localhost:9200",
   //     maxRetries: 5,
   //     requestTimeout: 60000,
   //     sniffOnStart: true
