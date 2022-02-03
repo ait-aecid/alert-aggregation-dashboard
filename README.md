@@ -26,7 +26,7 @@ The zip files can be found under `roles > aminer-cti > plugins`
 
 After the successful plugin installation, restart Kibana with:
 
-`sudo systemctl restart kibana`
+> sudo systemctl restart kibana
 
 ## Notes
 
